@@ -1,4 +1,5 @@
 #include "stdio.h"
+#include <string.h>
 
 #define N 11
 
@@ -119,12 +120,110 @@ void selection_sort_a(int a[])
 	}
 }
 
+void swap_a(int a[], int x, int y)
+{
+	int tmp = a[x];
+	a[x] = a[y];
+	a[y] = tmp;
+}
+
+void merge_a(int a[], int start, int first_half_end, int second_half_end)
+{
+	// first_half_end : end index of 1st half. So on.
+
+	// select the higher of two halves, then put at the end
+	int size = second_half_end - start +1;
+	int * w = new int[size]; 
+
+	// keep track of walking
+	int m1 = first_half_end;
+	int m2 = second_half_end;
+	int mw = size-1;
+
+	while ( true )
+	{
+		bool m1_valid = (m1 >= start);
+		bool m2_valid = (m2 > first_half_end);
+		if ( m1_valid && m2_valid)
+		{
+			if (a[m1]>a[m2])
+			{
+				w[mw] = a[m1];
+				m1 -= 1;
+			}
+			else
+			{
+				w[mw] = a[m2];
+				m2 -= 1;
+			}
+		}
+		else if (m1_valid && !m2_valid)
+		{
+			w[mw] = a[m1];
+			m1 -= 1;
+		}
+		else if (!m1_valid && m2_valid)
+		{
+			w[mw] = a[m2];
+			m2 -= 1;
+		}
+		else // end of both halves
+		{
+			break;
+		}
+
+		mw -= 1;
+	}
+
+	// copy result
+	memcpy(a+start, w, sizeof(int) * size);
+
+	delete[] w;
+}
+
+void merge_sort_sub_a( int a[], int start, int end )
+{
+	int diff = end - start;
+	if ( diff == 0)
+	{
+		return;
+	}
+	if ( diff == 1 )
+	{
+		if ( a[start] < a [end])
+			return;
+		else
+			swap_a(a, start, end);
+	}
+
+	int mid = (start + end)/2;
+	// printf("mid: %d, start: %d, end: %d\n", mid, start, end );
+	merge_sort_sub_a(a, start, mid );
+	merge_sort_sub_a(a,mid+1, end );
+
+// printf("before merge\n");
+	print_a(a);
+
+	merge_a(a, start, mid, end);
+// printf("after merge\n");
+
+	print_a(a);
+
+}
+
+void merge_sort_a(int a[])
+{
+	int n = N;
+	merge_sort_sub_a(a, 0, n-1);
+}
+
 int main(int argc, char const *argv[])
 {
 	print_a(o);
 	// insert_sort_a(o);
 	// bubble_sort_a(o);
-	selection_sort_a(o);
+	// selection_sort_a(o);
+	merge_sort_a(o);
 	//print_a(r);
 	return 0;
 }
