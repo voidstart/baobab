@@ -135,7 +135,7 @@ void merge_a(int a[], int start, int first_half_end, int second_half_end)
 	int size = second_half_end - start +1;
 	int * w = new int[size]; 
 
-	// keep track of walking
+	// keep track of walking . m-ark, w-alking
 	int m1 = first_half_end;
 	int m2 = second_half_end;
 	int mw = size-1;
