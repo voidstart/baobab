@@ -117,7 +117,6 @@ void selection_sort_a(int a[])
 
 		print_a(a);
 	}
-
 }
 
 int main(int argc, char const *argv[])
