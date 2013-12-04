@@ -1,2 +1,2 @@
 all:
-	gcc series_generator.cpp -o series_generator
+	g++ series_generator.cpp -o series_generator
