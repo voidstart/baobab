@@ -13,24 +13,24 @@ void print_a(int a[])
 	int n = N;
 
 	printf("a = [");
-	for (int i = 0; i < n; ++i)
-	{
-		if (i>0)
-			printf(",");
+		for (int i = 0; i < n; ++i)
+		{
+			if (i>0)
+				printf(",");
 
-		printf("% 4d", a[i]);
+			printf("% 4d", a[i]);
 
+		}
+		printf("]\n");
 	}
-	printf("]\n");
-}
 
-void insert_sort_a(int a[])
-{
-	int n = N;
-	int sorted_n = 0;
-
-	for (int i = 0; i < n; ++i)
+	void insert_sort_a(int a[])
 	{
+		int n = N;
+		int sorted_n = 0;
+
+		for (int i = 0; i < n; ++i)
+		{
 		int to_insert = a[i]; // the "payload"
 		int pos_to_put = i; // initial try to put at the end of sorted
 		// look from the end of sorted
@@ -89,11 +89,43 @@ void bubble_sort_a(int a[])
 		print_a(a);
 	}
 }
+
+void selection_sort_a(int a[])
+{
+	int n_passes = N; // N selects (each select one max)
+
+	// put selection result at the end of array
+	for (int i = 0; i < n_passes; ++i)
+	{
+		int num_to_select = N - i; // keep max at end, each round get smaller
+		int select_result_index = num_to_select-1;
+		int select_index = 0;
+		for (int j = 0; j < num_to_select; ++j)
+		{
+			if (a[j] > a[select_index])
+			{
+				select_index = j;
+			}
+		}
+
+		// printf("selected index: %d\n", select_index);
+
+		int tmp = a[select_result_index];
+		// printf("tmp: %d\n", tmp);
+		a[select_result_index] = a[select_index];
+		a[select_index] = tmp;
+
+		print_a(a);
+	}
+
+}
+
 int main(int argc, char const *argv[])
 {
 	print_a(o);
 	// insert_sort_a(o);
-	bubble_sort_a(o);
+	// bubble_sort_a(o);
+	selection_sort_a(o);
 	//print_a(r);
 	return 0;
 }
