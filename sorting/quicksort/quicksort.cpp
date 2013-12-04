@@ -37,15 +37,15 @@ void insert_sort_a(int a[])
 		for (int j = 0; j < sorted_n; ++j)
 		{
 			int end = sorted_n-1 - j; // reverse index
-			printf("Looking at end: a[%d] (= %d)\n",end, a[end] );
+			// printf("Looking at end: a[%d] (= %d)\n",end, a[end] );
 			//optimal case : payload just fits the end
 
 			if ( a[end] <= to_insert )
 			{
-				printf("optimal (%d <= %d): to_insert(= %d) is biggest, no shuffle\n",
-					a[end], to_insert,
-					to_insert);
-				pos_to_put = end+1; // put right after sorted end
+				// printf("optimal (%d <= %d): to_insert(= %d) is biggest, no shuffle\n",
+				// 	a[end], to_insert,
+				// 	to_insert);
+				// pos_to_put = end+1; // put right after sorted end
 				break; // 
 			}
 			else
@@ -60,7 +60,7 @@ void insert_sort_a(int a[])
 
 		sorted_n = sorted_n + 1;
 
-		printf("Sorted size: %d\n", sorted_n );
+		// printf("Sorted size: %d\n", sorted_n );
 		print_a(o);
 
 	}
