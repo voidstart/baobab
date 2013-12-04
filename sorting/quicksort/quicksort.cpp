@@ -202,7 +202,7 @@ void merge_sort_sub_a( int a[], int start, int end )
 	merge_sort_sub_a(a,mid+1, end );
 
 // printf("before merge\n");
-	print_a(a);
+	// print_a(a);
 
 	merge_a(a, start, mid, end);
 // printf("after merge\n");
