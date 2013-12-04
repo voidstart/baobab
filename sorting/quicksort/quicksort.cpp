@@ -66,10 +66,34 @@ void insert_sort_a(int a[])
 	}
 }
 
+void bubble_sort_a(int a[])
+{
+	int n_passes = N; // each pass get one max
+	for (int i = 0; i < n_passes; ++i)
+	{
+		int bubble = a[0]; // this bubble gets bigger along the line
+		int run_len = N - i; // each run is getting shorter, the ending part get sorted
+		for (int j = 0; j < run_len; ++j)
+		{
+			if (a[j] < bubble) // bubble shifts right
+			{
+				a[j-1] = a[j];
+				a[j] = bubble;
+			}
+			else // found new bubble ( bigger than the old bubble )
+			{
+				bubble = a[j];
+			}
+			// print_a(a);
+		}
+		print_a(a);
+	}
+}
 int main(int argc, char const *argv[])
 {
 	print_a(o);
-	insert_sort_a(o);
+	// insert_sort_a(o);
+	bubble_sort_a(o);
 	//print_a(r);
 	return 0;
 }
